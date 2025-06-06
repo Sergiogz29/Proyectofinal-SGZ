@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Aceite de Oliva Virgen Extra Premium",
+    "description": "Maridaje: perfecto para maridar con vegetales hervidos y crudos. También marida muy bien con carnes y ensaladas. Es un zumo de aceituna virgen extra “sin filtrar”, con un intenso sabor y aroma excelente. Predomina en este zumo de aceituna frutado un sabor intenso y con amargor. El alto contenido en ácido oleico y polifenoles hace que se conserve perfectamente en el tiempo desde su recolección, conservando así todo su aroma, sabor y antioxidantes. Extracción de aceituna verde y en perfecto estado para después hacer zumo de aceituna en frío, a menos de 25 grados centígrados. El tiempo de recolección es entre el 15 de octubre y el 2 de noviembre extraemos unas aceitunas verde y en perfecto estado.",
+    "price": 12.50,
+    "image": "/aceite1.jpeg",
+    "stock": 25
+  },
+  {
+    "id": 2,
+    "name": "Aceite de Oliva Tradicional",
+    "description": "Maridaje: ideal para postres, siendo un perfecto sustitutivo de la mantequilla. También marida de manera óptima con pescados y mahonesas. Su nombre hace referencia al color blanquecino de las hojas. Se elabora exclusivamente mediante procedimiento mecánico con extracción en frio (menos de 25 grados centígrados) Aceite AOVE suave en picor y amargor. Presenta un sabor intenso y aroma frutado de aceituna, manzana, plátano y almendra. Se recolecta en su momento óptimo entre el 15 de octubre y el 20 de noviembre conservando aroma, sabor y los antioxidantes que nos da la naturaleza",
+    "price": 8.90,
+    "image": "/aceite2.jpeg",
+    "stock": 30
+  },
+  {
+    "id": 3,
+    "name": "Aceite de Oliva Ecológico",
+    "description": "Maridaje: indicado para cocinar por su alto contenido en antioxidantes, además de para tomar en crudo. Es un AOVE muy equilibrado. Se puede usar para todo.  Es un Aceite de Oliva Virgen Extra prensado en frio, a una temperatura inferior a 25 grados centígrados. El proceso de fabricación se lleva a cabo a través de un modo totalmente mecánico y natural con el objetivo de conservar al aroma, el sabor y las innumerables propiedades beneficiosas que nos brinda la aceituna. La recolección re realiza entre mediados de octubre y mediados de diciembre en su momento óptimo.",
+    "price": 15.75,
+    "image": "/aceite3.jpeg",
+    "stock": 18
+  },
+  {
+    "id": 4,
+    "name": "Aceite de Oliva Gourmet",
+    "description": "Maridaje: perfecto para maridar con carnes, ensaladas y vegetales tanto crudos como hervidos. Aceite de Oliva Virgen Extra prensado en frío a menos de 25 grados centígrados y de un modo totalmente mecánico, con la particularidad que tiene un seguimiento en campo que respeta el medioambiente. Se elabora con aceitunas 100% naturales, rescatando técnicas de nuestros ancestros tales como hacer un “compos” con los restos de la poda y pulpa de la aceituna. Sistema de producción sin fertilizantes químicos ni pesticidas. Sólo recursos naturales, respetando siempre el medio ambiente.",
+    "price": 22.00,
+    "image": "/aceite4.jpeg",
+    "stock": 12
+  },
+  {
+    "id": 5,
+    "name": "Aceite de Oliva Sofía Prasini",
+    "description": "Maridaje: especialmente indicado para disfrutarlo en crudo. En tostadas, ensaladas o acompañado de un buen tomate. El nombre Sofía es sabiduría en griego y habla de nuestros 45 años haciendo AOVE de calidad. En esta nueva variedad hemos volcado todos nuestros conocimientos de toda la vida, perfeccionados con los del prestigioso oleólogo José Antonio Torres. Al mismo tiempo, Sofía es la diosa de la mujer del campo. Es nuestra forma de homenajear a todas las mujeres que han trabajado la tierra y en especial a nuestra madre, Remedios Ramos, que ha estado trabajando toda la vida la tierra para crear, junto a mi padre Rafael García, Almazara de Lubrín.",
+    "price": 18.30,
+    "image": "/aceite5.jpeg",
+    "stock": 20
+  }
+] 
