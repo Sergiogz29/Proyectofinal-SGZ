@@ -86,6 +86,34 @@ function appReducer(state, action) {
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
+  // Función para hacer login con el backend
+  const loginWithBackend = async (email, password) => {
+    try {
+      const response = await fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Guardar el token en localStorage
+        localStorage.setItem('token', data.access_token);
+        // Hacer login con los datos del usuario
+        dispatch({ type: 'LOGIN', payload: data.user });
+        return { success: true, user: data.user };
+      } else {
+        const error = await response.json();
+        return { success: false, message: error.message };
+      }
+    } catch (error) {
+      console.error('Error de login:', error);
+      return { success: false, message: 'Error de conexión con el servidor' };
+    }
+  };
+
   // Guardar datos en localStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -121,7 +149,11 @@ export function AppProvider({ children }) {
       dispatch({ type: 'UPDATE_CART_QUANTITY', payload: { id: productId, quantity } }),
     clearCart: () => dispatch({ type: 'CLEAR_CART' }),
     login: (user) => dispatch({ type: 'LOGIN', payload: user }),
-    logout: () => dispatch({ type: 'LOGOUT' }),
+    loginWithBackend,
+    logout: () => {
+      localStorage.removeItem('token');
+      dispatch({ type: 'LOGOUT' });
+    },
     register: (userData) => dispatch({ type: 'REGISTER', payload: userData }),
   };
 

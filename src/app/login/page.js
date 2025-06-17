@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login() {
-  const { users, login } = useApp();
+  const { users, login, loginWithBackend } = useApp();
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: '',
@@ -28,20 +28,31 @@ export default function Login() {
     setIsLoading(true);
     setError('');
 
-    // Simular delay de autenticación
-    setTimeout(() => {
-      const user = users.find(
-        u => u.email === formData.email && u.password === formData.password
-      );
-
-      if (user) {
-        login(user);
+    try {
+      // Intentar login con el backend primero
+      const result = await loginWithBackend(formData.email, formData.password);
+      
+      if (result.success) {
         router.push('/');
       } else {
-        setError('Email o contraseña incorrectos');
+        // Si falla el backend, intentar con datos locales como fallback
+        const user = users.find(
+          u => u.email === formData.email && u.password === formData.password
+        );
+
+        if (user) {
+          login(user);
+          router.push('/');
+        } else {
+          setError(result.message || 'Email o contraseña incorrectos');
+        }
       }
-      setIsLoading(false);
-    }, 1000);
+    } catch (error) {
+      console.error('Error en login:', error);
+      setError('Error de conexión. Intenta de nuevo.');
+    }
+    
+    setIsLoading(false);
   };
 
   return (

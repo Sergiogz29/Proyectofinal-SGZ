@@ -41,6 +41,16 @@ export default function Navbar() {
             >
               Inicio
             </Link>
+
+            {/* Productos - Solo para administradores */}
+            {user && user.role === 'admin' && (
+              <Link 
+                href="/productos" 
+                className="text-white hover:text-green-200 px-3 py-2 rounded-md font-medium transition-colors"
+              >
+                Productos
+              </Link>
+            )}
             
             {/* Carrito */}
             <Link 
@@ -110,6 +120,18 @@ export default function Navbar() {
               >
                 Inicio
               </Link>
+              
+              {/* Productos - Solo para administradores (móvil) */}
+              {user && user.role === 'admin' && (
+                <Link 
+                  href="/productos" 
+                  className="text-white hover:text-green-200 block px-3 py-2 rounded-md font-medium"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Productos
+                </Link>
+              )}
+              
               <Link 
                 href="/carrito" 
                 className="text-white hover:text-green-200 block px-3 py-2 rounded-md font-medium"

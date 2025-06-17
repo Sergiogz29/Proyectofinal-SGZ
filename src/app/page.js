@@ -1,10 +1,37 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import ProductCard from '../components/ProductCard';
 
 export default function Home() {
-  const { products } = useApp();
+  const { products: localProducts } = useApp();
+  const [products, setProducts] = useState(localProducts);
+  const [loading, setLoading] = useState(true);
+
+  // Cargar productos desde el backend
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/products');
+        if (response.ok) {
+          const backendProducts = await response.json();
+          setProducts(backendProducts);
+        } else {
+          // Si el backend no está disponible, usar productos locales
+          setProducts(localProducts);
+        }
+      } catch (error) {
+        console.error('Error al cargar productos del backend:', error);
+        // Fallback a productos locales
+        setProducts(localProducts);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [localProducts]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -36,11 +63,17 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-8">
+              <div className="text-lg text-gray-600">Cargando productos...</div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

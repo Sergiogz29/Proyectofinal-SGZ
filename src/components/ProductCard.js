@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function ProductCard({ product }) {
   const { addToCart } = useApp();
   const [isAdding, setIsAdding] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const handleAddToCart = async () => {
     setIsAdding(true);
@@ -21,12 +22,21 @@ export default function ProductCard({ product }) {
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col">
       {/* Imagen del producto - tamaño fijo */}
       <div className="relative h-80 flex-shrink-0 overflow-hidden bg-gray-50 flex items-center justify-center">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300 p-4"
-          style={{ maxHeight: '480px' }}
-        />
+        {imageError ? (
+          <div className="flex flex-col items-center justify-center h-full text-gray-400">
+            <div className="text-4xl mb-2">🖼️</div>
+            <div className="text-sm">Imagen no disponible</div>
+          </div>
+        ) : (
+          <img
+            src={product.image}
+            alt={product.name}
+            className="max-w-full max-h-full object-contain hover:scale-105 transition-transform duration-300 p-4"
+            style={{ maxHeight: '480px' }}
+            onError={() => setImageError(true)}
+            onLoad={() => setImageError(false)}
+          />
+        )}
         {product.stock < 10 && (
           <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-sm">
             Stock limitado
